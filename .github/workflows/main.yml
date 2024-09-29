@@ -9,6 +9,14 @@ jobs:
   hello-world:
     runs-on: ubuntu-latest
     steps:
-      - name: Print Hello World
-        run: |
-          echo "Hello World! this is just a test run"
+      - name: "Print Hello World"
+        run: echo "Hello World! this is just a test run"
+      - name: "Print Python version"
+        run: python version
+        
+  getsecrets:
+   runs-on: ubuntu-latest
+   steps:
+   - name: "get secrets from Github Secrets"
+     run: echo "this is the secret value from github secrets${{ secrets.SECRETVAL }}"
+     
