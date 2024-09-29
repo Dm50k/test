@@ -1,4 +1,4 @@
-name: Manual Trigger Workflow with Inputs
+name: Manual Trigger Workflow with Static Inputs
 
 on:
   workflow_dispatch:
@@ -6,10 +6,20 @@ on:
       environment:
         description: 'Deployment environment'
         required: true
-        default: 'staging'
+        type: choice
+        options: 
+          - staging
+          - production
+          - development
       version:
         description: 'Version to deploy'
-        required: false
+        required: true
+        type: choice
+        options:
+          - '1.0.0'
+          - '1.1.0'
+          - '2.0.0'
+          - 'latest'
 
 jobs:
   deploy:
@@ -20,4 +30,4 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Deploy to environment
-        run: echo "Deploying to ${{ github.event.inputs.environment }} with version ${{ github.event.inputs.version || 'latest' }}"
+        run: echo "Deploying to ${{ github.event.inputs.environment }} with version ${{ github.event.inputs.version }}"
