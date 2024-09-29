@@ -12,7 +12,7 @@ jobs:
       - name: "Print Hello World"
         run: echo "Hello World! this is just a test run"
       - name: "Print Python version"
-        run: python version
+        run: python --version
         
   getsecrets:
    runs-on: ubuntu-latest
