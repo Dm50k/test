@@ -1,22 +1,22 @@
-name: Hello World
+name: Hello World and Get Secrets
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
+
 jobs:
   hello-world:
     runs-on: ubuntu-latest
     steps:
       - name: "Print Hello World"
-        run: echo "Hello World! this is just a test run"
+        run: echo "Hello World! This is just a test run"
       - name: "Print Python version"
         run: python --version
-        
-  Getsecrets:
+
+  getsecrets:
     runs-on: ubuntu-latest
+    needs: hello-world
     steps:
-    - name: "get secrets from Github Secrets"
-      run: echo "this is the secret value from github secrets${{ secrets.SECRETVAL }}"
-     
+      - name: "Get secrets from GitHub Secrets"
+        run: echo "This is the secret value from GitHub Secrets ${{ secrets.SECRETVAL }}"
