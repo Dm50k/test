@@ -1,9 +1,9 @@
 name: Node.js CI with Matrix
 
 on:
-  # push:
-  #   branches:
-  #     - thirsty
+  push:
+    branches:
+      - thirsty
   workflow_dispatch:
 
 jobs:
