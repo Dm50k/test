@@ -1,0 +1,25 @@
+name: Simple Example with "with"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  example-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run script with parameters
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const name = '${{ inputs.name }}';
+            const greeting = '${{ inputs.greeting }}';
+            console.log(`${greeting}, ${name}!`);
+
+          name: 'GitHub Actions'
+          greeting: 'Hello'

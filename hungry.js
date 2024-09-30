@@ -16,6 +16,7 @@ console.log(`Multiplication of ${a} and  ${b}is ${result}`)
 
 let c1 = 5 
 let d1 = 6 
+// this is comment
 result1 = c1/d1
 console.log(`division of ${c1} and  ${d1}is ${result1}`)
 

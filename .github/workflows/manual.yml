@@ -1,0 +1,33 @@
+name: Manual Trigger Workflow with Static Inputs
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        type: choice
+        options: 
+          - staging
+          - production
+          - development
+      version:
+        description: 'Version to deploy'
+        required: true
+        type: choice
+        options:
+          - '1.0.0'
+          - '1.1.0'
+          - '2.0.0'
+          - 'latest'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to environment
+        run: echo "Deploying to ${{ github.event.inputs.environment }} with version ${{ github.event.inputs.version }}"
