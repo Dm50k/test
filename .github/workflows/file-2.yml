@@ -3,8 +3,7 @@ name: Simple Example with "with"
 on:
   push:
     branches:
-      - thirsty
-  workflow_dispatch:
+      - main
 
 jobs:
   example-job:
@@ -18,6 +17,9 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const name = 'GitHub Actions';
-            const greeting = 'Hello';
+            const name = '${{ inputs.name }}';
+            const greeting = '${{ inputs.greeting }}';
             console.log(`${greeting}, ${name}!`);
+
+          name: 'GitHub Actions'
+          greeting: 'Hello'
