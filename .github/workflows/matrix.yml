@@ -25,7 +25,7 @@ jobs:
       - name: Display Node.js version
         run: node -v
 
-      - name: Run script with Node.js version
-        run: |
-          const version = process.version;
-          console.log(`Running on Node.js version: ${version}`);
+      # - name: Run script with Node.js version
+      #   run: |
+      #     const version = process.version;
+      #     console.log(`Running on Node.js version: ${version}`);
