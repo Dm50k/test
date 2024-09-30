@@ -1,7 +1,11 @@
 name: Simple Example with "with"
 
+
 on:
- workflow_dispatch:
+  push:
+    branches:
+      - thirsty
+  workflow_dispatch:
    
 
 jobs:
