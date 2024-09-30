@@ -1,9 +1,8 @@
 name: Simple Example with "with"
 
 on:
-  push:
-    branches:
-      - main
+ workflow_dispatch:
+   
 
 jobs:
   example-job:
