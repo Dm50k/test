@@ -50,4 +50,6 @@ jobs:
       - name: Deploy
         run: echo I am deploying! 
       - name: Prod env secret
-        run: echo "this is secret ${{secrets.PROD_SECRET}}"
+        run: |
+         echo "this is secret ${{secrets.PROD_SECRET}}"
+         az version
