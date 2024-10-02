@@ -24,7 +24,7 @@ jobs:
       - name: list Files
         run: | 
           ls
-          ls- al
+          ls -al
 
     
   DeployDev:
