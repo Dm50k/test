@@ -59,3 +59,12 @@ jobs:
         run: |
          echo "this is secret ${{secrets.PROD_SECRET}}"
          az version
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+    
+       
+        
