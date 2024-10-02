@@ -19,7 +19,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Compile
-        run: echo Hello, world!
+        run: echo Hello, world! 
+
+      - name: list Files
+        run: | 
+          ls
+          ls- al
+
     
   DeployDev:
     name: Deploy to Dev 
@@ -68,8 +74,6 @@ jobs:
       - name: check the installed Node version
         run: node --version
 
-      - name: list Files
-        run: 'ls'
 
     
        
