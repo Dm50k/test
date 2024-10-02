@@ -65,6 +65,9 @@ jobs:
         with:
           node-version: 20
 
+      - name: check the installed Node version
+        run: node --version
+
     
        
         
