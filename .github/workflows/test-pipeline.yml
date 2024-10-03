@@ -1,0 +1,84 @@
+name: test-pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+# on:
+#   push:
+#     branches:
+#       - main
+#   workflow_dispatch: 
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Compile
+        run: echo Hello, world! 
+
+      - name: list Files
+        run: | 
+          ls
+          ls -al
+
+    
+  DeployDev:
+    name: Deploy to Dev 
+    if: github.event_name == 'pull_request'
+    needs: [Build]
+    runs-on: ubuntu-latest
+    environment: 
+      name: Development
+      url: 'http://dev.myapp.com'
+    steps:
+      - name: Deploy
+        run: |
+         echo "I am deploying!"
+         echo "${{ github.ref }}"
+    
+  DeployStaging:
+    name: Deploy to Staging 
+    if: github.event.ref == 'refs/heads/main'
+    needs: [Build]
+    runs-on: ubuntu-latest
+    environment: 
+      name: Staging
+      url: 'http://test.myapp.com'
+    steps:
+      - name: Deploy
+        run: echo I am deploying! 
+            
+  DeployProd:
+    name: Deploy to Production 
+    needs: [DeployStaging]
+    runs-on: ubuntu-latest
+    environment: 
+      name: Production
+      url: 'http://www.myapp.com'
+    steps:
+      - name: Deploy
+        run: echo I am deploying! 
+      - name: Prod env secret
+        run: |
+         echo "this is secret ${{secrets.PROD_SECRET}}"
+         az version
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: check the installed Node version
+        run: node --version
+
+      - name: check az version an list contents
+        run: | 
+         az version
+         ls 
+         ls -al
+         
