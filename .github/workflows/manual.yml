@@ -6,7 +6,7 @@ on:
       environment:
         description: 'Deployment environment'
         required: true
-        type: choice
+        type: boolean
         options: 
           - staging
           - production

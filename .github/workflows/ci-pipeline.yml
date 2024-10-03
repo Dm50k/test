@@ -2,19 +2,30 @@ name: CI + CD
 
 on:
   push:
-    branches: [ thirsty ]
+    branches: [ main ]
   pull_request:
-    branches: [ thirsty ]
+    branches: [ main ]
   workflow_dispatch:
+
+# on:
+#   push:
+#     branches:
+#       - main
+#   workflow_dispatch: 
 
 jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
       - name: Compile
-        run: echo Hello, world!
+        run: echo Hello, world! 
+
+      - name: list Files
+        run: | 
+          ls
+          ls -al
+
     
   DeployDev:
     name: Deploy to Dev 
@@ -54,8 +65,10 @@ jobs:
       - name: Deploy
         run: echo I am deploying! 
       - name: Prod env secret
-        run: echo "this is secret ${{secrets.PROD_SECRET}}"
-
+        run: |
+         echo "this is secret ${{secrets.PROD_SECRET}}"
+         az version
+         
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -63,3 +76,4 @@ jobs:
 
       - name: check the installed Node version
         run: node --version
+
