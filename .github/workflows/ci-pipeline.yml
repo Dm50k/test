@@ -26,7 +26,10 @@ jobs:
       url: 'http://dev.myapp.com'
     steps:
       - name: Deploy
-        run: echo I am deploying! 
+        run: |
+         echo "I am deploying!"
+         echo "${{ github.ref }}"
+      
     
   DeployStaging:
     name: Deploy to Staging 
@@ -52,3 +55,11 @@ jobs:
         run: echo I am deploying! 
       - name: Prod env secret
         run: echo "this is secret ${{secrets.PROD_SECRET}}"
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: check the installed Node version
+        run: node --version
