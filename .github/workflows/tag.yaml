@@ -1,0 +1,37 @@
+name: Tag Event Example with Stages
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  qa-stage:
+    if: startsWith(github.ref, 'refs/tags/qa')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: QA Stage
+        run: echo "Running QA stage for tag ${{ github.ref }}"
+
+  dev-stage:
+    if: startsWith(github.ref, 'refs/tags/dev')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Dev Stage
+        run: echo "Running Dev stage for tag ${{ github.ref }}"
+
+  prod-stage:
+    if: startsWith(github.ref, 'refs/tags/prod')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Prod Stage
+        run: echo "Running Prod stage for tag ${{ github.ref }}"
